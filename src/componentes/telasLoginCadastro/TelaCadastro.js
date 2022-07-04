@@ -20,8 +20,8 @@ export default function TelaCadastro() {
     const dadosCadastrados = {
       email,
       name,
-      checkPassword,
-      password
+      password,
+      checkPassword
     }
 
     if ((email || name || checkPassword || password) !== null) {
@@ -32,8 +32,8 @@ export default function TelaCadastro() {
           navigate('/')
         })
         .catch(err => {
+          alert(err.response.data)
           setAble(true)
-          alert(err.response.data.message)
         })
     }
   }
@@ -65,7 +65,7 @@ export default function TelaCadastro() {
             required
           />
           <input
-            type="text"
+            type="password"
             placeholder="Confirme a senha"
             value={checkPassword}
             onChange={e => setCheckPassword(e.target.value)}

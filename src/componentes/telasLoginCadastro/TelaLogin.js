@@ -1,14 +1,13 @@
-import { useEffect, useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { ThreeDots } from 'react-loader-spinner'
-import UserContext from './UseContext'
+import UserContext from '../UseContext'
 
 export default function TelaLogin() {
   const { setDadosLoginUsuario } = useContext(UserContext)
   const navigate = useNavigate()
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [able, setAble] = useState(true)
@@ -26,19 +25,19 @@ export default function TelaLogin() {
       const promise = axios.post(URL, corpoForm)
       promise
         .then(response => {
-          // DAQUI ELE VAI PARA A TELA DE HOJE
+          // DAQUI ELE VAI PARA A TELA DE MOVIMENTAÇÕES
           setDadosLoginUsuario({ ...response.data })
-          navigate('/hoje')
+          navigate('/movimentacao')
         })
         .catch(err => {
-          setTimeout(() => {
-            alert(err.response.data.message)
-            setAble(true)
-          }, 3000)
+          alert(err.response.data)
+          setAble(true)
         })
+    } else {
+      alert('Todos os campos são obrigatórios')
+      return
     }
   }
-
   return (
     <ConteudoLogin>
       <h1>MyWallet</h1>
@@ -61,7 +60,7 @@ export default function TelaLogin() {
           <button type="submit">Entrar</button>
         </FormLogin>
       ) : (
-        <FormLogin onSubmit={logarUser}>
+        <FormLogin>
           <input type="email" placeholder="E-mail" disabled required />
           <input type="password" placeholder="senha" disabled required />
           <div>
