@@ -51,25 +51,33 @@ export default function TelaMovimentacao() {
         <img src={ImagemDeSaida} alt="LogOut" onClick={logOut} />
       </Topo>
       <MovimentacoesUser>
-        <ScrollarMovimentacoes>
-          {movimentacoes?.map(movimentacao => (
-            <ConteudoMovimentacao>
-              <Dia>{movimentacao.data}</Dia>
-              <Descricao>
-                <p>{movimentacao.descricao}</p>
-              </Descricao>
-              <Valor
-                color={movimentacao.tipo === 'entrada' ? '#03AC00' : '#c70000'}
-              >
-                {Number(movimentacao.valor)?.toFixed(2)}
-              </Valor>
-            </ConteudoMovimentacao>
-          ))}
-        </ScrollarMovimentacoes>
-        <Saldo>
-          <span>SALDO</span>
-          <span>{saldo.toFixed(2)}</span>
-        </Saldo>
+        {movimentacoes.length === 0 ? (
+          <h1>Não há registros de entrada ou saída</h1>
+        ) : (
+          <>
+            <ScrollarMovimentacoes>
+              {movimentacoes?.map((movimentacao, id) => (
+                <ConteudoMovimentacao>
+                  <Dia>{movimentacao.data}</Dia>
+                  <Descricao>
+                    <p>{movimentacao.descricao}</p>
+                  </Descricao>
+                  <Valor
+                    color={
+                      movimentacao.tipo === 'entrada' ? '#03AC00' : '#c70000'
+                    }
+                  >
+                    {Number(movimentacao.valor)?.toFixed(2)}
+                  </Valor>
+                </ConteudoMovimentacao>
+              ))}
+            </ScrollarMovimentacoes>
+            <Saldo>
+              <span>SALDO</span>
+              <span>{saldo.toFixed(2)}</span>
+            </Saldo>{' '}
+          </>
+        )}
       </MovimentacoesUser>
       <Buttons>
         <Link to="/entrada" style={{ textDecoration: 'none' }}>
@@ -117,6 +125,11 @@ const Topo = styled.div`
   }
 `
 const MovimentacoesUser = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
   background: #ffffff;
   margin-top: 30px;
   width: 100%;
@@ -124,6 +137,13 @@ const MovimentacoesUser = styled.div`
   border-radius: 5px;
   box-sizing: border-box;
   padding: 15px 10px;
+  h1 {
+    text-align: center;
+    width: 200px;
+    font-weight: 400;
+    font-size: 20px;
+    color: #868686;
+  }
 `
 const ScrollarMovimentacoes = styled.div`
   overflow: scroll;
