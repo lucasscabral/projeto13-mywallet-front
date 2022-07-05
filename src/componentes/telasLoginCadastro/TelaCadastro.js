@@ -25,7 +25,7 @@ export default function TelaCadastro() {
     }
 
     if ((email || name || checkPassword || password) !== null) {
-      const URL = 'http://localhost:5000/cadastro'
+      const URL = 'https://mywallets.herokuapp.com/cadastro'
       const promise = axios.post(URL, dadosCadastrados)
       promise
         .then(response => {

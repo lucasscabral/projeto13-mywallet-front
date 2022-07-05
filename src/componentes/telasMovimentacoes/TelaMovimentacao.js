@@ -25,7 +25,7 @@ export default function TelaMovimentacao() {
   }
   saldo = entrada - saida
   useEffect(() => {
-    const URL = 'http://localhost:5000/movimentacao'
+    const URL = 'https://mywallets.herokuapp.com/movimentacao'
     const promise = axios.get(URL, {
       headers: {
         Authorization: `Bearer ${dadosLoginUsuario?.token}`

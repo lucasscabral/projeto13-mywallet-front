@@ -21,7 +21,7 @@ export default function TelaLogin() {
         password
       }
 
-      const URL = 'http://localhost:5000/login'
+      const URL = 'https://mywallets.herokuapp.com/login'
       const promise = axios.post(URL, corpoForm)
       promise
         .then(response => {

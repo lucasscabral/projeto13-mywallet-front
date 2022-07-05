@@ -20,7 +20,7 @@ export default function TelaEntrada() {
       descricao
     }
 
-    const URL = 'http://localhost:5000/saida'
+    const URL = 'https://mywallets.herokuapp.com/saida'
     const promise = axios.post(URL, dadosSaida, {
       headers: {
         Authorization: `Bearer ${dadosLoginUsuario.token}`
