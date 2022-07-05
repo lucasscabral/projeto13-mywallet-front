@@ -8,12 +8,10 @@ export default function TelaEntrada() {
   const { dadosLoginUsuario, setMovimentacoes } = useContext(UserContext)
   const [valor, setValor] = useState()
   const [descricao, setDescricao] = useState('')
-  //const [able, setAble] = useState(true)
   const navigate = useNavigate()
 
   function submitEntrada(event) {
     event.preventDefault()
-    //setAble(false)
     const dadosEntrada = {
       valor,
       descricao
@@ -28,7 +26,6 @@ export default function TelaEntrada() {
     promise
       .then(response => {
         setMovimentacoes([...response.data])
-        //setAble(true)
         navigate('/movimentacao')
       })
       .catch(error => {

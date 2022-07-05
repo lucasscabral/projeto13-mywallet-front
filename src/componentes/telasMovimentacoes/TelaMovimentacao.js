@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
@@ -16,11 +16,12 @@ export default function TelaMovimentacao() {
   let entrada = 0
   let saida = 0
   if (movimentacoes) {
-    let valorEntrada = movimentacoes.filter(valores => {
-      if (valores.tipo === 'entrada') entrada += Number(valores.valor)
-    })
-    let valorSaida = movimentacoes.filter(valores => {
-      if (valores.tipo === 'saida') saida += Number(valores.valor)
+    movimentacoes.filter(valores => {
+      if (valores.tipo === 'entrada') {
+        entrada += Number(valores.valor)
+      } else {
+        saida += Number(valores.valor)
+      }
     })
   }
   saldo = entrada - saida
@@ -179,6 +180,7 @@ const Valor = styled.span`
   color: ${props => props.color};
 `
 const Saldo = styled.div`
+  width: 100%;
   padding: 0 10px;
   margin-top: 20px;
   display: flex;
